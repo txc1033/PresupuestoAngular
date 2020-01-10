@@ -2,6 +2,7 @@ import { EgresoAppComponent } from './egreso-app/egreso-app.component';
 import { IngresoAppComponent } from './ingreso-app/ingreso-app.component';
 import { Presupuesto } from './Servicios/Presupuesto.services';
 import { Component, ViewChild, AfterViewInit } from '@angular/core';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-root',
@@ -16,10 +17,11 @@ export class AppComponent implements AfterViewInit {
 
   title = 'presupuesto-app';
   presupuesto: Presupuesto;
-  total: any;
-  ingresoTotal: any;
-  egresoTotal: any;
+  total: string;
+  ingresoTotal: string;
+  egresoTotal: string;
   porcentajeEgreso: string;
+
 
   ngAfterViewInit(): void {
     this.presupuesto = new Presupuesto(this.icomponent.ingresos, this.ecomponent.egresos);

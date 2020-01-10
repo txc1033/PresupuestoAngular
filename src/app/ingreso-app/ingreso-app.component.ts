@@ -15,4 +15,7 @@ export class IngresoAppComponent {
   constructor() { }
 
 
+
+  agregarIngreso(ingreso: Ingreso) { this.ingresos.push(ingreso); }
+
 }

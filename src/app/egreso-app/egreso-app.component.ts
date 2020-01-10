@@ -29,5 +29,8 @@ export class EgresoAppComponent implements OnInit {
     return porcentaje.toPrecision(2).toString() + '%';
   }
 
+  agregarEgreso(egreso: Egreso) {
+    this.egresos.push(egreso);
+  }
 
 }

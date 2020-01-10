@@ -1,3 +1,6 @@
+import { ViewChild } from '@angular/core';
+import { EgresoAppComponent } from './../egreso-app/egreso-app.component';
+import { IngresoAppComponent } from './../ingreso-app/ingreso-app.component';
 import { Ingreso } from '../ingreso-app/ingreso-app.model';
 import { Egreso } from '../egreso-app/egreso-app.model';
 
@@ -9,10 +12,28 @@ export class Presupuesto {
     minimumFractionDigits: 2
   });
 
+  @ViewChild(IngresoAppComponent) ingAppHijo: IngresoAppComponent;
+  @ViewChild(EgresoAppComponent) egrAppHijo: EgresoAppComponent;
+
+
   private ingresoGlobal: number;
   private egresoGlobal: number;
   private presupuesto: number;
 
+  static getValorUsd(valor: number) {
+    return this.formatter.format(valor);
+  }
+
+
+   public agregar(tributarioDescripcion: string, tributarioValor: number, tributarioEsIngreso: boolean) {
+    if (tributarioEsIngreso) {
+      const ingreso = new Ingreso(tributarioDescripcion, tributarioValor );
+      this.ingAppHijo.agregarIngreso(ingreso);
+    } else {
+      const egreso = new Egreso(tributarioDescripcion, tributarioValor);
+      this.egrAppHijo.agregarEgreso(egreso);
+    }
+  }
 
   constructor(listaIngresos: Ingreso[], listaEgresos: Egreso[]) {
 
@@ -29,10 +50,6 @@ export class Presupuesto {
     this.presupuesto = this.ingresoGlobal - this.egresoGlobal;
   }
 
-
-  static getValorUsd(valor: number) {
-    return this.formatter.format(valor);
-  }
 
   getPresupuesto() {
     return Presupuesto.formatter.format(this.presupuesto);
