@@ -1,21 +1,23 @@
 import { Ingreso } from './ingreso-app.model';
-import { Component } from '@angular/core';
+import { IngresoService } from './ingreso-app.service';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-ingreso-app',
   templateUrl: './ingreso-app.component.html',
   styleUrls: ['./ingreso-app.component.css']
 })
-export class IngresoAppComponent {
+export class IngresoAppComponent implements OnInit {
 
-  // tslint:disable-next-line: max-line-length
-  ingresos: Ingreso[] = [new Ingreso('Salario', 2100), new Ingreso('Venta coche', 1500), new Ingreso('Bono de navidad', 1500)
-                                     , new Ingreso('Uber', 500)];
+  ingresos: Ingreso[]=[];
 
-  constructor() { }
+  constructor(private ingresosService: IngresoService) { }
 
+ ngOnInit(){
+   this.ingresos = this.ingresosService.ingresos;
+ }
 
+  agregarIngreso(ingreso: Ingreso){
 
-  agregarIngreso(ingreso: Ingreso) { this.ingresos.push(ingreso); }
-
+  }
 }
