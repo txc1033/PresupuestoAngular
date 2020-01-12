@@ -17,12 +17,9 @@ export class IngresoAppComponent implements OnInit {
   constructor(@Inject(forwardRef(() => IngresoService)) private servicioIngreso: IngresoService) { }
 
   ngOnInit() {
-    // throw new Error('Method not implemented.');
     this.ingresos = this.servicioIngreso.ingresos;
   }
 
-
-
-  agregarIngreso(ingreso: Ingreso) { this.ingresos.push(ingreso); }
-
+  agregarIngreso(ing: Ingreso) { this.servicioIngreso.Agregar(ing); }
+  eliminarIngreso(ing: Ingreso) { this.servicioIngreso.Eliminar(ing); }
 }
