@@ -8,24 +8,23 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 })
 export class TributarioAppComponent implements OnInit {
 
-  // public tributarioDescripcion: string;
-  // public tributarioValor: number;
-  public tributarioEsIngreso: boolean;
+  public tributarioEsIngreso = true;
 
   @ViewChild('descripcionInput') tributarioDescripcion: ElementRef;
   @ViewChild('valorInput') tributarioValor: ElementRef;
 
-  constructor() { }
+  constructor(private presupuesto: Presupuesto) { }
 
   ngOnInit() {
   }
 
-  asignaTributarioP(positivoNegativo: string) { this.tributarioEsIngreso = positivoNegativo === '+' ? true : false; }
+  asignaTributarioP(positivoNegativo) {
+    this.tributarioEsIngreso = positivoNegativo.target.value === '+' ? true : false; }
 
   metodoAgregar() {
-      // const presp: Presupuesto = new Presupuesto([], []);
-    console.log(this.tributarioDescripcion.nativeElement.value, this.tributarioValor.nativeElement.value, this.tributarioEsIngreso );
-
+    // tslint:disable-next-line:radix
+    this.presupuesto.agregar(this.tributarioDescripcion.nativeElement.value, parseInt(this.tributarioValor.nativeElement.value)
+                             , this.tributarioEsIngreso);
 
   }
 

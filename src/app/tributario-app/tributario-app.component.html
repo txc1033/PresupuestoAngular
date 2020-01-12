@@ -2,12 +2,13 @@
   <div class="agregar">
     <div class="agregar_contenedor">
       <select (change)="asignaTributarioP($event)" class="agregar_tipo">
-        <option value="ing" selected> + </option>
-        <option  value="egr"> - </option>
+        <option value="+" selected>+</option>
+        <option  value="-">-</option>
       </select>
       <input type="text" class="agregar_descripcion" placeholder="Agregar Descripción" #descripcionInput>
       <input  type="number" class="agregar_valor" placeholder="Valor" #valorInput>
-      <button (click)="metodoAgregar()" class="agregar_btn"><i class="ion-ios-checkmark-outline"></i></button>
+      <button type='button' class="agregar_btn"><i (click)="metodoAgregar()"
+          class="ion-ios-checkmark-outline"></i></button>
     </div>
   </div>
 </form>
