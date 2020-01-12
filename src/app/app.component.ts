@@ -2,7 +2,6 @@ import { EgresoAppComponent } from './egreso-app/egreso-app.component';
 import { IngresoAppComponent } from './ingreso-app/ingreso-app.component';
 import { Presupuesto } from './Servicios/Presupuesto.services';
 import { Component, ViewChild, AfterViewInit } from '@angular/core';
-import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-root',
@@ -25,9 +24,15 @@ export class AppComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.presupuesto = new Presupuesto(this.icomponent.ingresos, this.ecomponent.egresos);
-    this.ingresoTotal = this.presupuesto.getIngresosTotal();
-    this.egresoTotal =  this.presupuesto.getEgresosTotal();
-    this.total = this.presupuesto.getPresupuesto();
-    this.porcentajeEgreso = this.presupuesto.getPorcentaje();
+    setTimeout(() => {
+      this.ingresoTotal = this.presupuesto.getIngresosTotal(),
+      this.egresoTotal = this.presupuesto.getEgresosTotal(),
+      this.total = this.presupuesto.getPresupuesto(),
+      this.porcentajeEgreso = this.presupuesto.getPorcentaje()
+      // tslint:disable-next-line: no-unused-expression
+      , 500; });
+
+
+
     }
 }
