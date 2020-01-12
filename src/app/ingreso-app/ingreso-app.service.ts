@@ -5,5 +5,9 @@ export class IngresoService {
   ingresos: Ingreso[] = [new Ingreso('Salario', 2100), new Ingreso('Venta coche', 1500), new Ingreso('Bono de navidad', 1500)
     , new Ingreso('Uber', 500)];
 
+  constructor() {
+
+  }
+
   Agregar(ingreso: Ingreso) { this.ingresos.push(ingreso); }
 }
