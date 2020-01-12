@@ -1,38 +1,18 @@
-import { EgresoAppComponent } from './egreso-app/egreso-app.component';
-import { IngresoAppComponent } from './ingreso-app/ingreso-app.component';
-import { Presupuesto } from './Servicios/Presupuesto.services';
 import { Component, ViewChild, AfterViewInit } from '@angular/core';
+import { Presupuesto } from './Servicios/Presupuesto.services';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements AfterViewInit {
-
-
-  @ViewChild(IngresoAppComponent) private icomponent: IngresoAppComponent;
-  @ViewChild(EgresoAppComponent) private ecomponent: EgresoAppComponent;
-
+export class AppComponent {
   title = 'presupuesto-app';
-  presupuesto: Presupuesto;
-  total: string;
-  ingresoTotal: string;
-  egresoTotal: string;
-  porcentajeEgreso: string;
 
+  constructor(private presupuesto: Presupuesto) { }
+  getPresupuesto() { return this.presupuesto.getPresupuesto(); }
+  getIngreso() { return this.presupuesto.getIngresosTotal(); }
+  getEgreso() { return this.presupuesto.getEgresosTotal(); }
+  getPorcentaje() { return this.presupuesto.getPorcentaje(); }
 
-  ngAfterViewInit(): void {
-    this.presupuesto = new Presupuesto(this.icomponent.ingresos, this.ecomponent.egresos);
-    setTimeout(() => {
-      this.ingresoTotal = this.presupuesto.getIngresosTotal(),
-      this.egresoTotal = this.presupuesto.getEgresosTotal(),
-      this.total = this.presupuesto.getPresupuesto(),
-      this.porcentajeEgreso = this.presupuesto.getPorcentaje()
-      // tslint:disable-next-line: no-unused-expression
-      , 500; });
-
-
-
-    }
 }
