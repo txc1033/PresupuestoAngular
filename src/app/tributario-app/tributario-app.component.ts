@@ -22,10 +22,11 @@ export class TributarioAppComponent implements OnInit {
     this.tributarioEsIngreso = positivoNegativo.target.value === '+' ? true : false; }
 
   metodoAgregar() {
+    if(this.tributarioDescripcion.nativeElement.value != '' && this.tributarioValor.nativeElement.value != '') {
     // tslint:disable-next-line:radix
     this.presupuesto.agregar(this.tributarioDescripcion.nativeElement.value, parseInt(this.tributarioValor.nativeElement.value)
                              , this.tributarioEsIngreso);
-
+    }
   }
 
 
