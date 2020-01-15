@@ -10,8 +10,8 @@ export class TributarioAppComponent implements OnInit {
 
   public tributarioEsIngreso = true;
 
-  @ViewChild('descripcionInput') tributarioDescripcion: ElementRef;
-  @ViewChild('valorInput') tributarioValor: ElementRef;
+  @ViewChild('descripcionInput', { static: false }) tributarioDescripcion: ElementRef;
+  @ViewChild('valorInput', { static: false }) tributarioValor: ElementRef;
 
   constructor(private presupuesto: Presupuesto) { }
 
@@ -26,6 +26,8 @@ export class TributarioAppComponent implements OnInit {
     // tslint:disable-next-line:radix
     this.presupuesto.agregar(this.tributarioDescripcion.nativeElement.value, parseInt(this.tributarioValor.nativeElement.value)
                              , this.tributarioEsIngreso);
+      this.tributarioDescripcion.nativeElement.value = '';
+      this.tributarioValor.nativeElement.value = '';
     }
   }
 
