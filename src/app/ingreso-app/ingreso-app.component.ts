@@ -1,18 +1,25 @@
+
+import { Component, OnInit, Injectable, Inject, forwardRef } from '@angular/core';
 import { Ingreso } from './ingreso-app.model';
-import { Component } from '@angular/core';
+import { IngresoService } from './ingreso-app.service';
+
 
 @Component({
   selector: 'app-ingreso-app',
   templateUrl: './ingreso-app.component.html',
   styleUrls: ['./ingreso-app.component.css']
 })
-export class IngresoAppComponent {
+  @Injectable()
+export class IngresoAppComponent implements OnInit {
 
-  // tslint:disable-next-line: max-line-length
-  ingresos: Ingreso[] = [new Ingreso('Salario', 2100), new Ingreso('Venta coche', 1500), new Ingreso('Bono de navidad', 1500)
-                                     , new Ingreso('Uber', 500)];
+  ingresos: Ingreso[] = [];
 
-  constructor() { }
+  constructor(@Inject(forwardRef(() => IngresoService)) private servicioIngreso: IngresoService) { }
 
+  ngOnInit() {
+    this.ingresos = this.servicioIngreso.ingresos;
+  }
 
+  agregarIngreso(ing: Ingreso) { this.servicioIngreso.Agregar(ing); }
+  eliminarIngreso(ing: Ingreso) { this.servicioIngreso.Eliminar(ing); }
 }

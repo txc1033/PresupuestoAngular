@@ -5,7 +5,11 @@ import { AppComponent } from './app.component';
 import { IngresoAppComponent } from './ingreso-app/ingreso-app.component';
 import { TributarioAppComponent } from './tributario-app/tributario-app.component';
 import { EgresoAppComponent } from './egreso-app/egreso-app.component';
-import { EncabezadoComponent } from './encabezado/encabezado.component';
+import { EncabezadoAppComponent } from './encabezado-app/encabezado-app.component';
+
+import { Presupuesto } from './Servicios/Presupuesto.services';
+import { IngresoService } from './ingreso-app/ingreso-app.service';
+import { EgresoService } from './egreso-app/egreso-app.service';
 
 @NgModule({
   declarations: [
@@ -13,12 +17,12 @@ import { EncabezadoComponent } from './encabezado/encabezado.component';
     IngresoAppComponent,
     TributarioAppComponent,
     EgresoAppComponent,
-    EncabezadoComponent
+    EncabezadoAppComponent
   ],
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [IngresoService, EgresoService, Presupuesto],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

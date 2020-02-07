@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+
+import { Component, OnInit, Inject, forwardRef } from '@angular/core';
 import { Egreso } from './egreso-app.model';
+import { EgresoService } from './egreso-app.service';
 
 @Component({
   selector: 'app-egreso-app',
@@ -8,26 +10,16 @@ import { Egreso } from './egreso-app.model';
 })
 export class EgresoAppComponent implements OnInit {
 
-  // tslint:disable-next-line: whitespace
-  egresos: Egreso[] = [new Egreso('Renta departamento', 900), new Egreso('Ropa', 1500), new Egreso('Bencina', 450)
-                                  , new Egreso('Comida para gatos', 200)];
+  egresos: Egreso[] = [];
 
-
-  constructor() { }
+  constructor(@Inject(forwardRef(() => EgresoService)) private servicioEgreso: EgresoService) { }
 
   ngOnInit() {
+    this.egresos = this.servicioEgreso.egresos;
   }
 
-  getPorcentaje(valorEg)  {
-    let total = 0;
-
-    this.egresos.forEach( valor => {
-      total = total + valor.valorEgreso;
-    });
-
-    const porcentaje: number = (valorEg * 100) / total;
-    return porcentaje.toPrecision(2).toString() + '%';
-  }
-
+  agregarEgreso(egr: Egreso) { this.servicioEgreso.Agregar(egr); }
+  eliminarEgreso(egr: Egreso) { this.servicioEgreso.Eliminar(egr); }
+  getPorcentaje(egr: Egreso) { return this.servicioEgreso.Porcentaje(egr); }
 
 }

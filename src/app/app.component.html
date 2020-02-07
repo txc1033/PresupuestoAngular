@@ -1,31 +1,10 @@
 
-
-<app-encabezado></app-encabezado>
-<div class="cabecero">
-  <div class="presupuesto">
-    <div class="presupuesto_titulo">
-      Presupuesto Disponible:
-    </div>
-
-    <div class="presupuesto_valor">+ {{total}}</div>
-
-    <div class="presupuesto_ingreso limpiarEstilos">
-      <div class="presupuesto_ingreso--texto" style="color:snow;">Ingresos</div>
-      <div class="right">
-        <div class="presupuesto_ingreso--valor">+ {{ingresoTotal}}</div>
-        <div class="presupuesto_ingreso--porcentaje">&nbsp;</div>
-      </div>
-    </div>
-
-    <div class="presupuesto_egreso limpiarEstilos">
-      <div class="presupuesto_egreso--text" style="color:snow;">Egresos</div>
-      <div class="right limpiarEstilos">
-        <div class="presupuesto_egreso--valor">- {{egresoTotal}}</div>
-        <div class="presupuesto_egreso--porcentaje">{{porcentajeEgreso}}</div>
-      </div>
-    </div>
-  </div>
-</div>
+<app-encabezado-app
+[presupuesto]="getPresupuesto()"
+[ingresoTotal]="getIngreso()"
+[egresoTotal]="getEgreso()"
+[porcentajeEgreso]="getPorcentaje()"
+></app-encabezado-app>
 
 <app-tributario-app></app-tributario-app>
 
